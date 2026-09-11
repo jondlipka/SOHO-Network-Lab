@@ -11,7 +11,7 @@ Verification of network connectivity:
 - Successfully pinged 192.168.10.1(default gateway) from PC1
 - Successfully pinged 192.168.20.50(printer) from PC1
 
-**Access and Config Basics
+**Access and Config Basics**
  - From the Switch2 CLI:
 	 - Entered privileged EXEC mode (`enable`)
 	 - Viewed and compared the running configuration with the startup configuration to verify that they are the same and that the startup configuration exists (`show running-config`) (`show startup-config`)
@@ -24,7 +24,7 @@ Verification of network connectivity:
 	 `switchport access vlan 20`
 	 `switchport mode access`
 
-**Ports, Interfaces & VLANs
+**Ports, Interfaces & VLANs**
 - Endpoint PC1 is connected to Fa0/2 on Switch2, VLAN 10
 	- This connection places PC1 on the PC-side network (VLAN 10)
 - Endpoint Printer1 is connected to Fa0/3 on Switch2, VLAN 20
@@ -32,7 +32,7 @@ Verification of network connectivity:
 - Port Fa 0/1 is an upstream trunk port connected to Switch1, VLAN trunk
 	- This connection carries traffic for both VLANs simultaneously between Switch2 and Switch1
 
-**Finding Devices
+**Finding Devices**
 - Generated traffic by pinging Printer1's IP address from Router1
 	- Result of ping: `Success rate is 80 percent (4/5), round-trip min/avg/max = 0/0/0 ms`
 - The ping from Router1 updated the ARP table allowing Router1 to learn the MAC address of Printer1 (the first packet timed out while the device built its ARP cache)
@@ -41,7 +41,7 @@ Verification of network connectivity:
 
 - *Learning the MAC address of Printer1 from Router1 allowed us to locate the printer using only the IP address, demonstrating a proper CLI workflow and detective path*
 
-**Upstream, Neighbors and Spanning Tree 
+**Upstream, Neighbors and Spanning Tree** 
 - Using the command `show interfaces status` on Switch2 provides information regarding the Switch2 port towards Switch1(Fa0/1), its physical connection status, and verifies it as a trunk:
 	- Port: Fa0/1, Name: Uplink to SW1, Status: connected, VLAN: trunk Duplex: a-full, Speed: a-100, Type: 10/100BaseTX
 - Using the command `show interfaces trunk` on Switch2 provides information regarding the VLANs being carried by the trunk
@@ -55,7 +55,7 @@ Verification of network connectivity:
 		Fa0/3               Desg FWD 19        128.3    P2p
 	- This shows that port Fa0/1 is forwarding vlan 20, and we know Fa0/1 is connected to Switch1 providing an uplink. This also shows port Fa0/3 is forwarding vlan 20 and we know Fa0/3 is connected to Printer1
 
-**Health, Logs and Connectivity
+**Health, Logs and Connectivity**
 - On Switch2, command `show interfaces fastEthernet0/3` shows that the port is Up and provided information on any errors (no errors detected)
 	- `956 packets input, 193351 bytes, 0 no buffer`
 	`Received 956 broadcasts, 0 runts, 0 giants, 0 throttles`
@@ -73,7 +73,7 @@ Verification of network connectivity:
 	`%SYS-5-CONFIG_I: Configured from console by console`
 - Further verification of connectivity provided by pinging Printer1(192.168.20.50) from Router1 with a success rate of 100 percent
 
-**Verifying Configurations
+**Verifying Configurations**
 - On Switch2, command show running-config shows the port roles of each configured interface on the Switch:
 		`interface FastEthernet0/1`
 		`description Uplink to SW1`
